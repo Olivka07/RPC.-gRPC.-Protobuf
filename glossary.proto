@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package dictionary;
+
+service DictionaryService {
+  rpc GetAllTerms (Empty) returns (TermsList);
+  rpc AddTerm (AddTermRequest) returns (AddTermResponse);
+  rpc GetTerm (GetTermRequest) returns (GetTermResponse);
+  rpc UpdateTerm (UpdateTermRequest) returns (UpdateTermResponse);
+  rpc DeleteTerm(DeleteTermRequest) returns (DeleteTermResponse);
+
+}
+
+message Empty {}
+
+message Term {
+  int32 id = 1;
+  string term = 2;
+  string definition = 3;
+}
+
+message TermsList {
+  repeated Term terms = 1;
+}
+
+message AddTermRequest {
+  Term term = 1;
+}
+
+message AddTermResponse {
+  string message = 1;
+}
+
+message GetTermRequest {
+  string term = 1;
+}
+
+message GetTermResponse {
+  Term term = 1;
+}
+message UpdateTermRequest {
+    Term term = 1;
+}
+message UpdateTermResponse {
+    string message = 1;
+}
+
+message DeleteTermRequest {
+    int32 id = 1;
+}
+message DeleteTermResponse {
+    string message = 1;
+}
+
+
